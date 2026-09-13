@@ -1,10 +1,10 @@
 # The information about the SORE program
 
 __name__    = 'SORE'
-__version__ = '0.5'
+__version__ = '0.6.0'
 __author__  = 'Dr. Geoffrey Weal, Dr. Chayanit Wechwithayakhlung, Dr. Daniel Packwood, Dr. Paul Hume, Prof. Justin Hodgkiss'
 
-import sys, importlib
+import sys, importlib.util
 
 if sys.version_info[0] == 2:
 	toString = ''
@@ -102,27 +102,6 @@ if version.parse(ase.__version__) < version.parse(ase_version_minimum):
 	raise ImportError(toString)
 
 # ------------------------------------------------------------------------------------------------------------------------
-
-networkx_spec = importlib.util.find_spec("networkx")
-networkx_found = (networkx_spec is not None)
-if not networkx_found:
-	toString = ''
-	toString += '\n'
-	toString += '================================================'+'\n'
-	toString += 'This is the SORE Program'+'\n'
-	toString += 'Version: '+str(__version__)+'\n'
-	toString += '\n'
-	toString += 'The SORE program requires the "networkx" program.'+'\n'
-	toString += '\n'
-	toString += 'Install networkx through pip by following the instruction in https://github.com/GardenGroupUO/SORE'+'\n'
-	toString += 'These instructions will ask you to install networkx by typing the following into your terminal\n'
-	toString += '\n'
-	toString += 'pip3 install --user --upgrade networkx\n'
-	toString += '\n'
-	toString += 'This program will exit before beginning'+'\n'
-	toString += '================================================'+'\n'
-	raise ImportError(toString)	
-
 # ------------------------------------------------------------------------------------------------------------------------
 
 tqdm_spec = importlib.util.find_spec("tqdm")
