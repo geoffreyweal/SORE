@@ -7,7 +7,7 @@ import os
 
 from ase.io import read
 
-from EKMC.EKMC_Setup.EKMC_Only_Setup.get_RE_and_bandgap_data_methods.helpful_functions import get_reorganisation_energy, convert_hartree_to_eV
+from SUMELF.SUMELF.EKMC_based_methods.EKMC_Only_Setup.get_RE_and_bandgap_data_methods.helpful_functions import get_reorganisation_energy, convert_hartree_to_eV
 
 def get_RE_and_bandgap_data(reorganisation_and_bandgap_energy_details, crystal_name, functional_and_basis_set, conformationally_equivalent_molecules, original_molecule_names, conformationally_unique_molecule_names):
 	"""

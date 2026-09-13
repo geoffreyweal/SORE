@@ -13,9 +13,9 @@ Group pages: https://people.wgtn.ac.nz/paul.hume/grants, https://www.packwood.ic
 
 The Sum-Over-Rates for Excitons (SORE) program calculates the exciton diffusion coefficient of a molecular crystal using a sum-over-rates equation.
 
-SORE answers the same question as the [EKMC program](https://github.com/geoffreyweal/EKMC) — how fast does an exciton diffuse through this crystal — but does so analytically rather than by simulating individual exciton trajectories. Where EKMC runs many kinetic Monte Carlo simulations and averages them, SORE sums the hopping rate constants directly. This makes SORE much faster, at the cost of the detail that an explicit trajectory gives you.
+SORE answers the same question as the [EKMC program](https://geoffreyweal.github.io/EKMC) — how fast does an exciton diffuse through this crystal — but does so analytically rather than by simulating individual exciton trajectories. Where EKMC runs many kinetic Monte Carlo simulations and averages them, SORE sums the hopping rate constants directly. This makes SORE much faster, at the cost of the detail that an explicit trajectory gives you.
 
-SORE uses the same electronic data as EKMC: excited-state energies, reorganisation energies, and exciton (EET) couplings obtained from DFT by the [ECCP program](https://github.com/geoffreyweal/ECCP).
+SORE uses the same electronic data as EKMC: excited-state energies, reorganisation energies, and exciton (EET) couplings obtained from DFT by the [ECCP program](https://geoffreyweal.github.io/ECCP). It also takes the same ``EKMC_settings`` dictionary that you would give to EKMC, so you can run both on the same crystal without rewriting your settings.
 
 SORE can be run in three modes, set by ``SORE_settings['mode']``:
 
@@ -25,41 +25,18 @@ SORE can be run in three modes, set by ``SORE_settings['mode']``:
 
 ## Installation
 
-SORE depends only on the [SUMELF](https://github.com/geoffreyweal/SUMELF) program, which provides the shared machinery it uses to build the crystal neighbourhood and the rate-constant data. You do not need to install EKMC or ECCP to run SORE.
-
-SUMELF is not on PyPI, so install SORE from GitHub — this will pull SUMELF in automatically:
-
-```bash
-pip3 install --upgrade --user git+https://github.com/geoffreyweal/SORE.git
-```
+It is recommended to read the installation page before using the SORE program. See [Installation: Setting Up SORE and Pre-Requisites Packages](Installation.md) for more information.
 
 ## Guide To Using SORE
 
-The SORE program is one in a series of programs that are designed to be used in the workflow shown below.
-
-SORE is a python library rather than a terminal command: you drive it from a ``Run_SORE.py`` script. It takes the same ``EKMC_settings`` dictionary that you would give to the EKMC program, plus a ``SORE_settings`` dictionary:
-
-```python
-from SORE import Run_SORE
-
-# EKMC_settings is the same settings dictionary used by the EKMC program.
-SORE_settings = {'mode': 'standard'}
-
-Run_SORE(EKMC_settings, SORE_settings=SORE_settings, no_of_cpus_for_setup=1)
-```
-
-``Run_SORE`` accepts the following arguments:
-
-* ``EKMC_settings`` (*dict.*): The crystal, coupling and kinetics settings, in the same format the EKMC program uses.
-* ``SORE_settings`` (*dict.*): The SORE settings. Must contain ``mode`` (see the three modes above).
-* ``save_initial_data`` (*bool.*): If ``True``, save the neighbourhood and coupling data obtained during setup so it can be reused on a later run. Default: ``False``.
-* ``no_of_cpus_for_setup`` (*int.*): The number of CPUs to use when setting up the crystal neighbourhood. Default: ``1``.
+The SORE program is one in a series of programs that are designed to be used in the workflow shown below. After you have installed SORE, see [How To Use The SORE Program](Using_The_SORE_Program.md) to learn about how to use this program.
 
 ## The Grand Scheme
 
 The SORE program is used as part of a grand scheme for calculating the excited-state electronic properties of molecules in a crystal. This includes simulations of exciton and charge diffusion through crystal structures, in particular for organic molecules (but not limited to them). This scheme is shown below, along with where the SORE program is used in this scheme. 
 
-<img alt="Schematic of Grand Scheme" src="Documentation/docs/Shared_Images/Grand_Scheme/Grand_Scheme.png" />
+<img alt="Schematic of Grand Scheme" src="Shared_Images/Grand_Scheme/Grand_Scheme.png?raw=true#only-light" />
+<img alt="Schematic of Grand Scheme" src="Shared_Images/Grand_Scheme/Grand_Scheme_Dark.png?raw=true#only-dark" />
 
 ## Websites and Github Repositories for All Associated Programs
 

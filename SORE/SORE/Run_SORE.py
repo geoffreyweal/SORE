@@ -7,8 +7,8 @@ import xlsxwriter
 import os, tqdm, math
 from copy import deepcopy
 from SORE.SORE.SORE_methods.get_SORE_version                          import get_SORE_version
-from EKMC.EKMC_Setup.EKMC_Only_Setup.EKMC_Only_Setup                  import initial_setup, get_non_changing_lattice_kinetics_details
-from EKMC.EKMC_Setup.EKMC_Only_Setup.get_constant_rate_law_data       import get_constant_rate_law_data
+from SUMELF.SUMELF.EKMC_based_methods.EKMC_Only_Setup.EKMC_Only_Setup                  import initial_setup, get_non_changing_lattice_kinetics_details
+from SUMELF.SUMELF.EKMC_based_methods.EKMC_Only_Setup.get_constant_rate_law_data       import get_constant_rate_law_data
 from SORE.SORE.SORE_methods.SORE_input_data_methods                   import save_SORE_input_data, read_SORE_input_data
 from SORE.SORE.SORE_methods.get_conformationally_equivalent_molecules import get_conformationally_equivalent_molecules
 from SORE.SORE.SORE_methods.get_RE_and_bandgap_data                   import get_RE_and_bandgap_data

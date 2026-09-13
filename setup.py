@@ -27,7 +27,7 @@ def find_packages(root):
         rel_dirname = os.path.relpath(dirname)
         if not rel_dirname in packages:
           packages.append(rel_dirname)
-  return sorted(packages)
+  return sorted(package.replace(os.sep, '.') for package in packages)
 
 def find_scripts():
   scripts = []
@@ -43,7 +43,6 @@ def find_scripts():
 
 setup(name='SORE',
       packages=find_packages(root='SORE'),
-      scripts=['bin/SORE']+find_scripts(),
       version=get_version_number(),
       description="This program is designed to calculate the sum-over-rates diffusion coefficient for excitons in crystalline materials.",
       long_description=get_long_description(),
@@ -54,7 +53,7 @@ setup(name='SORE',
       license='GNU AFFERO GENERAL PUBLIC LICENSE',
       zip_safe=False,
       keywords = ['victoria-university', 'victoria-university-of-wellington', 'university-of-wellington', 'wellington-university', 'atomic-simulation-environment', 'organic-photovoltaics', 'OPV'],
-      install_requires=['numpy', 'ase>=3.19.0', 'packaging', 'tqdm'],
+      install_requires=['numpy', 'ase>=3.19.0', 'packaging', 'tqdm', 'xlsxwriter', 'SUMELF @ git+https://github.com/geoffreyweal/SUMELF.git'],
       classifiers=[
         'Development Status :: 3 - Alpha',      # Chose either "3 - Alpha", "4 - Beta" or "5 - Production/Stable" as the current state of your package
         'Intended Audience :: Science/Research',      # Define that your audience are developers
