@@ -12,6 +12,8 @@ pip3 install --upgrade --user git+https://github.com/geoffreyweal/SUMELF.git
 
 See [Installation](Installation.md) for more information.
 
+If SUMELF *is* installed and you still see this, check that you are not running from the folder that holds your repository clones — see [the section below](#importerror-or-modulenotfounderror-when-working-in-the-folder-that-holds-your-clones).
+
 ## ``Error: SORE_settings['mode'] must be set to either: ...``
 
 ``SORE_settings`` must contain a ``mode`` entry, set to one of ``'standard'``, ``'analytical_energetic_disorder'`` or ``'numeric_energetic_disorder'``. See [How To Use The SORE Program](Using_The_SORE_Program.md) for what each mode does.
@@ -38,6 +40,45 @@ If you want to try several ``SORE_settings`` on the same crystal, set ``save_ini
 
 This is expected to some degree: SORE evaluates a sum-over-rates equation while EKMC averages explicit simulated trajectories. Large disagreement is worth investigating, and usually means the two runs were not given the same ``EKMC_settings``, or that the kinetic model or coupling settings differ between them.
 
+
+## ``ImportError`` or ``ModuleNotFoundError`` when working in the folder that holds your clones
+
+If you keep your clones of these programs together in one folder, like this:
+
+~~~
+Solar_Cell_Project/
+|-- ACSD/
+|-- ECCP/
+|-- SUMELF/
+|-- ...
+~~~
+
+then running a command or a python script **from that folder** fails with an error such as:
+
+~~~
+ImportError: cannot import name '__version__' from 'SORE' (unknown location)
+~~~
+
+or:
+
+~~~
+ModuleNotFoundError: No module named 'SUMELF'
+~~~
+
+even though you installed everything correctly.
+
+This happens because python searches the current directory first. The ``SORE`` folder sitting there is the **git repository**, not the python package: the package is one level further in, at ``SORE/SORE``. The repository folder has no ``__init__.py``, so python treats it as an empty namespace package, finds no code inside it, and stops looking. Your installed copy is never reached.
+
+The fix is to work from anywhere other than that folder. Change into the directory holding the crystals you are working on and run from there, which is what you would normally be doing anyway:
+
+~~~bash
+cd /path/to/my_crystals
+python3 Run_SORE.py
+~~~
+
+!!! tip
+
+	Only the folder that *directly* contains the repository folders is affected. Subfolders of it are fine, and so is any unrelated directory.
 
 ## Something else has gone wrong
 
